@@ -1,14 +1,16 @@
 $(document).ready(function(){
+  // VARS
+  // -------------------------------------------
   var DEBUG = false;
   var CURR_DEBUG = true;
 
-function createJQuery (itemTitleNum, itemTitleStr, itemTextDesc, itemURL, imageHTML) {
-  // for (var i=0; i<num; i++) {
-
+  // FUNCTIONS
+  // -------------------------------------------
+  function createJQuery (itemTitleNum, itemTitleStr, itemTextDesc, itemURL, imageHTML) {
     var screenCard = $("<div>").attr("class", "card");
     //  Title
     var itemText = "<h2>Item " + itemTitleNum + ">&nbsp;" + itemTitleStr + "</h2>";
-    
+
     //  Description
     itemText += "<h6>Item Description: " + itemTextDesc + "</h6>";
 
@@ -19,7 +21,6 @@ function createJQuery (itemTitleNum, itemTitleStr, itemTextDesc, itemURL, imageH
       console.log ("********************");
     }
     itemText += " <span>Link to Thumb: <a href='" + itemURL + "'>" + itemURL + "</a></span>";
-    // itemText += "<img src=" + itemURL + " alt='Food Category Pic'>";
     if( DEBUG ) {
       console.log ("++++++++++++++++++++");
       console.log("itemText = " + itemText);
@@ -41,10 +42,9 @@ function createJQuery (itemTitleNum, itemTitleStr, itemTextDesc, itemURL, imageH
     $("#card-section").append(imageCard);
   }  
 
-// };
-
-
-  $("#category-btn").on("click", function () {
+    // BUTTON Section 
+    // -------------------------------------------
+$("#category-btn").on("click", function () {
     $("#card-section").html("");
     // Built by LucyBot. www.lucybot.com
     var urlBase = "https://www.themealdb.com/api/json/v1/1/categories.php"
@@ -59,7 +59,6 @@ function createJQuery (itemTitleNum, itemTitleStr, itemTextDesc, itemURL, imageH
       if( DEBUG ) {
         console.log(result);
       }
-      // console.log(JSON.parse(result));
       var numItems = result.categories.length;
       for (var i=0; i<numItems; i++) {
         var itemTitleNum = result.categories[i].idCategory;
@@ -79,10 +78,8 @@ function createJQuery (itemTitleNum, itemTitleStr, itemTextDesc, itemURL, imageH
 $("#cuisine-btn").on("click", function () {
   $("#card-section").html("");
   var mySearchString = $("#q-search-term").val().trim();
-  // var mySearchNumOfRecords = $("#num-of-reccords").val().trim();
   console.log("mySearchString = " + mySearchString);
 
-  // Built by LucyBot. www.lucybot.com
   if (mySearchString) {
     var urlBase = "https://www.themealdb.com/api/json/v1/1/filter.php"
     var url = urlBase + '?a=' + mySearchString;
@@ -104,7 +101,7 @@ $("#cuisine-btn").on("click", function () {
     for (var i=0; i<numItems; i++) {
       var itemTitleNum = result.meals[i].idMeal;
       var itemTitleStr = result.meals[i].strMeal;
-      var itemTextDesc = ""; // result.meals[i].strCategoryDescription;
+      var itemTextDesc = "";
       var itemURL = result.meals[i].strMealThumb;
       var imageHTML = "<img src=" + result.meals[i].strMealThumb + " alt='Food Meal Pic'>";
 
@@ -116,18 +113,14 @@ $("#cuisine-btn").on("click", function () {
   });
 });
 
-
-// 
 // Random Drink Button
 $("#random-drink-btn").on("click", function () {
   $("#card-section").html("");
   var mySearchString = $("#q-search-term").val().trim();
-  // var mySearchNumOfRecords = $("#num-of-reccords").val().trim();
   console.log("mySearchString = " + mySearchString);
 
-  // Built by LucyBot. www.lucybot.com
   var urlBase = "https://www.thecocktaildb.com/api/json/v1/1/random.php"
-  var url = urlBase; // + '?a=' + mySearchString;
+  var url = urlBase; 
   if( CURR_DEBUG ) {
     console.log (url);
   }
@@ -142,7 +135,7 @@ $("#random-drink-btn").on("click", function () {
     for (var i=0; i<numItems; i++) {
       var itemTitleNum = result.drinks[i].idDrink;
       var itemTitleStr = result.drinks[i].strDrink;
-      var itemTextDesc = ""; // result.meals[i].strCategoryDescription;
+      var itemTextDesc = "";
       var itemURL = result.drinks[i].strDrinkThumb;
       var imageHTML = "<img src=" + result.drinks[i].strDrinkThumb + " alt='Random Drink Pic'>";
 

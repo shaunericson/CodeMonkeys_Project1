@@ -7,8 +7,6 @@
     <title>Food and Drink Search</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- My CSS -->
-    <!-- <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" /> -->
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -21,53 +19,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     
     <link href="https://fonts.googleapis.com/css?family=Modern+Antiqua" rel="stylesheet">
-    <!-- <script src="assets/javascript/search.js"></script> -->
+    
+    <!-- My CSS -->
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
 
-
-
-    <!--START CSS-->
-    <style type="text/css">
-
-        .specialjum {
-            background: rgb(133, 195, 245);
-            background-size: cover;
-            /* min-height: 600px; */
-        }
-
-        H1 {
-            font-family: 'Modern Antiqua', cursive; 
-        }
-
-        H2 {
-            font-family: 'Scope One', serif;
-        }
-
-        .input-group-btn {
-            margin : 20px;
-        }
-
-
-
-    </style>
-
-
-
-    <!--END CSS-->
-
-
-    <!--BEGIN BODY AND BOOTSTRAP CODING-->
 
 </head>
 
 <body>
-
-
-<!-- <div class="container">
-    <input type="text" class="form-control" placeholder="Search for..." id="q-search-term">
-        <input type="text" class="form-control" placeholder="Start Date (Optional)..." id="start-date">
-        <input type="text" class="form-control" placeholder="End Date(Optional)..."id="end-date">
--->
-                    
     <div class="container">
         <div class="jumbotron specialjum">
             <div>
@@ -75,8 +34,6 @@
                 <h2 id="parameter_banner">Search Parameters</h2>
             </div>
             <div class="row">
-                <!-- <h6 class="text-center" style="position: relative; 
-                        left: -200px;"><img src="~/Images/logo.png" /></h6> -->
             </div>
             <div class="row">
                 <div class="col-lg-6 col-lg-offset-4">
@@ -85,31 +42,8 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="row">
-                <div class="col-lg-6 col-lg-offset-4">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Number of Items to Retrieve" id="num-of-reccords">
-                    </div>
-                </div>
-            </div> -->
             <div class="row">
-                <!-- <h6 class="text-center" style="position: relative; 
-                        left: -200px;"><img src="~/Images/logo.png" /></h6> -->
             </div>
-            <!-- <div class="row">
-                <div class="col-lg-6 col-lg-offset-4">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Start Date (Optional)..." id="start-date">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6 col-lg-offset-4">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="End Date(Optional)..."id="end-date">
-                    </div>
-                </div>
-            </div> -->
             <div class="row">
                 <div class="col-lg-6 col-lg-offset-4">
                     <div class="input-group">
@@ -131,20 +65,14 @@
             </div>
         </div>
     </div>
-<!------------------------------------------------------------------------------------------------>
+<!--   ------------------------ RESULTS Section ------------------------  -->
     <div class="container">
         <h2>Search Results</h2>
         <div class="row" id="card-section"></div>
         <div class="row" id="image-section"></div>
     </div>
-
-    <!--END BOOTSTRAP, DIVS, BODY-->
-
-
                     
 <!-- Script(s) -->                    
-                    
-
     <script src="assets/javascript/search.js"></script>
 
 </body>
