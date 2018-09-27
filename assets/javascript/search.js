@@ -1,3 +1,5 @@
+// Food n' Drink Search
+
 $(document).ready(function(){
   var DEBUG = false;
   var CURR_DEBUG = true;
