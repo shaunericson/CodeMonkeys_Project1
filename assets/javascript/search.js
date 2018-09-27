@@ -1,3 +1,5 @@
+// Food n' Drink Search
+
 $(document).ready(function(){
   // VARS
   // -------------------------------------------
