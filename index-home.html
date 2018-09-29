@@ -1,46 +1,72 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <title>RPS-Multi</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <!-- Myerweb Reset -->
     <link rel="stylesheet" type="text/css" href="./assets/css/reset.css" />
-    
+
     <!-- Bootstrap CSS CDN-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+
     <!-- Project Style Sheet -->
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
-    
+
     <!-- jQuery JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+
     <!-- Bootstrap JS CDN -->
-    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script> -->
-    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
     <!-- Firebase SRC -->
     <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
 </head>
+
 <body>
 
     <div class="container">
-    
+
         <!-- Jumbotron -->
         <div class="jumbotron">
-          <h1 class="text-center">Rock Paper Scissors</h1>
+            <h1 class="text-center">Mealgenie</h1>
         </div>
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" id="playerName">
-                    <div class="input-group-append">
-                        <button class="btn btn-secondary" type="button" id="startGame">Start</button>
-                    </div>      
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Food Regions
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" id="american" href="#">American</a>
+                        <a class="dropdown-item" id="british" href="#">British</a>
+                        <a class="dropdown-item" id="canadian" href="#">Canadian</a>
+                        <a class="dropdown-item" id="chinese" href="#">Chinese</a>
+                        <a class="dropdown-item" id="dutch" href="#">Dutch</a>
+                        <a class="dropdown-item" id="french" href="#">French</a>
+                        <a class="dropdown-item" id="greek" href="#">Greek</a>
+                        <a class="dropdown-item" id="irish" href="#">Irish</a>
+                        <a class="dropdown-item" id="italian" href="#">Italian</a>
+                        <a class="dropdown-item" id="jamaican" href="#">Jamaican</a>
+                        <a class="dropdown-item" id="malaysian" href="#">Malaysian</a>
+                        <a class="dropdown-item" id="mexican" href="#">Mexican</a>
+                        <a class="dropdown-item" id="moroccan" href="#">Moroccan</a>
+                        <a class="dropdown-item" id="russian" href="#">Russian</a>
+                        <a class="dropdown-item" id="spanish" href="#">Spanish</a>
+                        <a class="dropdown-item" id="thai" href="#">Thai</a>
+                        <a class="dropdown-item" id="vietnamesse" href="#">Vietnamese</a>
+                    </div>
                 </div>
             </div>
             <div class="col-md-2"></div>
@@ -86,23 +112,23 @@
             <div class="col-md-2"></div>
         </div>
         <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-7 chatMessage">
-                    <form>
-                        <input type="text" class="form-control" id="chatMessage">
-                    </form>
-                </div>  
-                <div class="col-md-1 chatMessageSend">
-                     <form>
-                        <button type="submit" class="btn btn-secondary" id="submitMessage">Submit</button>
-                    </form>
-                </div>
-                <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+            <div class="col-md-7 chatMessage">
+                <form>
+                    <input type="text" class="form-control" id="chatMessage">
+                </form>
+            </div>
+            <div class="col-md-1 chatMessageSend">
+                <form>
+                    <button type="submit" class="btn btn-secondary" id="submitMessage">Submit</button>
+                </form>
+            </div>
+            <div class="col-md-2"></div>
         </div>
     </div>
 </body>
 
 <!-- Project JS -->
-<script src="./assets/javascript/rps-multi.js"></script>
+<script src="./assets/javascript/search.js"></script>
 
 </html>
