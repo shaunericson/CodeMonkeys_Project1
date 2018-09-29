@@ -1,7 +1,5 @@
 // Food n' Drink Search
 
-console.log(cuisCategory);
-
 $(document).ready(function(){
   // VARS
   // -------------------------------------------
