@@ -1,0 +1,165 @@
+Food:Drink Matrix
+Wednesday, September 26, 2018
+9:08 PM
+ 
+Type of Cuisine - "Category"
+ 
+Cuisine Categories
+ 
+ 
+ 
+ 
+mealID = 1
+mealName = Beef
+dr1ID = 12213
+dr1Name = Singapore 213
+dr2ID = 12214
+dr2Name = Singapore Sling
+dr3ID = 12215
+dr3Name = Singapore 215
+ 
+ 
+ID = 2
+Name = Chicken
+dr1ID = 12113
+dr1Name = Sling 113
+dr2ID = 12114
+dr2Name =  Sling Singapore
+dr3ID = 12115
+dr3Name = Sling 115
+ 
+ 
+ 
+ 
+ID = 3
+Name = Desert
+ 
+ 
+ 
+ID = 4
+Name = Lamb
+ 
+ 
+ 
+ID = 5
+Name = Miscellaneous
+ 
+ 
+ 
+ID = 6
+Name = Pasta
+ 
+ 
+ 
+ID = 7
+Name = Pork
+ 
+ 
+ 
+ID = 8
+Name = Seafood
+ 
+ 
+ 
+ID = 9
+Name = Side
+ 
+ 
+ 
+ID = 10
+Name = Starter
+ 
+ 
+ 
+ID = 11
+Name = Vegan
+ 
+ 
+ 
+ID = 12
+Name = Vegetarian
+ 
+ 
+ 
+ 
+ 
+Region of Cuisine - "Area"
+ 
+Cuisine Regions
+ 
+ 
+ 
+ 
+Name = American
+ 
+ 
+ 
+Name = British
+ 
+ 
+ 
+Name = Canadian
+ 
+ 
+ 
+Name = Chinese
+ 
+ 
+ 
+Name = Dutch
+ 
+ 
+ 
+Name = French
+ 
+ 
+ 
+Name = Greek
+ 
+ 
+ 
+Name = Irish
+ 
+ 
+ 
+Name = Italian
+ 
+ 
+ 
+Name = Jamaican
+ 
+ 
+ 
+Name = Malaysian
+ 
+ 
+ 
+Name = Mexican
+ 
+ 
+ 
+Name = Moroccan
+ 
+ 
+ 
+Name = Russian
+ 
+ 
+ 
+Name = Spanish
+ 
+ 
+ 
+Name = Thai
+ 
+ 
+ 
+Name = Unknown
+ 
+ 
+ 
+Name = Vietnamese
+ 
+ 
+ 
+

@@ -1,5 +1,14 @@
 // Food n' Drink Search
 
+// Research $.data vs $.get...
+// window.readFile = function(text) {
+//   jQuery.data ('FoodDrinkMatrix.txt', function(txt){
+//     $(".text-result").text(txt);
+//   });
+// };
+
+
+
 $(document).ready(function(){
   // VARS
   // -------------------------------------------
@@ -149,164 +158,40 @@ $("#random-drink-btn").on("click", function () {
 });
 
 
+
+
+
 // var success = {};
 // var resText = "";
 // var data = {};
 
-// function readFile(text) {
+//  window.readFile = function(text) {
 //   jQuery.get ('FoodDrinkMatrix.txt', function(txt){
 //     $(".text-result").text(txt);
 //   });
 // };
 
 
+// jQueryRead data from file!
+// jQuery.get('FoodDrinkMatrix.txt', function(data) {
+//   $( ".text-result" ).text( data );
+//   alert(data);
+//   }, success, 
+//   resText 
+// );
 
-
-
-var cuisCategory = {
-  beef : {
-    ID:     1,
-    name:   "Beef",
-    drinks: [
-      12213,  // Singapore
-      12214,  // Singapore Sling 
-      12215 ] // Sling
-  },
-  chicken : {
-    ID:     2,
-    name:   "Chicken",
-    drinks: [
-      12113,  // Singapore2
-      12114,  // Sling Singapore2
-      12115 ] // Sling2
-  },
-};
-
-var cuisRegion =  {
-  american : {
-    ID:     1,
-    name:   "American",
-    drinks: [
-      12215,  // Singapore3
-      12214,  // Singapore Sling3
-      12213 ] // Sling3
-  },
-  british : {
-    ID:     2,
-    name:   "British",
-    drinks: [
-      12115,  // Singapore4
-      12114,  // Sling Singapore4
-      12113 ] // Sling4
-  },
-  canadian : {
-    ID:     3,
-    name:   "Canadian",
-    drinks: [
-      12015,  // Singapore5
-      12014,  // Sling Singapore5
-      12013 ] // Sling5
-  }
-};
-
-/*
-
-Name = Chinese
- 
-Name = Dutch
- 
-Name = French
- 
-Name = Greek
- 
-Name = Irish
- 
-Name = Italian
- 
-Name = Jamaican
- 
-Name = Malaysian
- 
-Name = Mexican
- 
-Name = Moroccan
- 
-Name = Russian
- 
-Name = Spanish
- 
-Name = Thai
- 
-Name = Vietnamese
- 
-*/
-
-$("#select-btn").on("click", function (event) {
-  event.preventDefault();
-  $("#card-section").html("");
-  var foodCatSearchString = $("#food-cat-drop").val();
-  console.log("foodCatSearchString = " + foodCatSearchString);
-
-  // var urlBase = "https://www.thecocktaildb.com/api/json/v1/1/random.php"
-  var urlBase = "https://www.themealdb.com/api/json/v1/1/list.php"
-  var url = urlBase + "?c=" + foodCatSearchString; 
-  if( CURR_DEBUG ) {
-    console.log (url);
-  }
-  $.ajax({
-    url: url,
-    method: 'GET',
-  }).done(function(result) {
-    if( CURR_DEBUG ) {
-      console.log(result);
-    }
-    var numItems = result.categories.length;
-    for (var i=0; i<numItems; i++) {
-      var itemTitleNum = result.categories[i].idCategory;
-      var itemTitleStr = result.categories[i].strCategory;
-      var itemTextDesc = result.categories[i].strCategoryDescription;
-      var itemURL = result.categories[i].strCategoryThumb;
-      var imageHTML = "<img src=" + itemURL + " alt='Food Category Pic'>";
-      createJQuery(itemTitleNum, itemTitleStr, itemTextDesc, itemURL, imageHTML);
-    }
-})
-  .fail(function(err) {
-    throw err;
-  });
-});
-
-$("#select-btn").on("click", function (event) {
-  event.preventDefault();
-  $("#card-section").html("");
-  var cuisAreaSearchString = $("#cuis-area-drop").val();
-  console.log("cuisAreaSearchString = " + cuisAreaSearchString);
-
-  // var urlBase = "https://www.thecocktaildb.com/api/json/v1/1/random.php"
-  var urlBase = "https://www.themealdb.com/api/json/v1/1/list.php"
-  var url = urlBase + "?a=" + cuisAreaSearchString; 
-  if( CURR_DEBUG ) {
-    console.log (url);
-  }
-  $.ajax({
-    url: url,
-    method: 'GET',
-  }).done(function(result) {
-    if( CURR_DEBUG ) {
-      console.log(result);
-    }
-    var numItems = result.categories.length;
-    for (var i=0; i<numItems; i++) {
-      var itemTitleNum = result.categories[i].idCategory;
-      var itemTitleStr = result.categories[i].strCategory;
-      var itemTextDesc = result.categories[i].strCategoryDescription;
-      var itemURL = result.categories[i].strCategoryThumb;
-      var imageHTML = "<img src=" + itemURL + " alt='Food Category Pic'>";
-      createJQuery(itemTitleNum, itemTitleStr, itemTextDesc, itemURL, imageHTML);
-    }
-})
-  .fail(function(err) {
-    throw err;
-  });
-});
-
+// AJAX Read data from file!
+// $.ajax({
+//   url: 'FoodDrinkMatrix.txt',
+//   data: function(data) {
+//   $( ".text-result" ).text( data );
+//     alert(data);
+//   },
+//   success: function(data) {
+//     response(data)
+//     $( ".text-result" ).text( data );
+//     alert(data);
+//   },
+//   dataType: Object
+//   });
 });

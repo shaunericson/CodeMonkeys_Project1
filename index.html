@@ -26,6 +26,7 @@
 
 </head>
 
+<!-- <body onload="readFile();"> -->
 <body>
     <div class="container">
         <div class="jumbotron specialjum">
@@ -52,11 +53,51 @@
             </div>
             <div class="row">
                 <div class="col-lg-6 col-lg-offset-4">
+                    <form method="GET">
+                            Food Categories: <br>
+                        <select name="food-cat-drop" id="food-cat-drop">
+                            <option value="None" name="none">None</option>
+                            <option value="Beef" name="beef">Beef</option>
+                            <option value="chicken" name="chicken">Chicken</option>
+                            <option value="Dessert" name="desert">Dessert</option>
+                            <option value="Lamb" name="lamb">Lamb</option>
+                            <option value="Pasta" name="pasta">Pasta</option>
+                            <option value="Pork" name="pork">Pork</option>
+                            <option value="Seafood" name="seafood">Seafood</option>
+                            <option value="Vegan" name="vegan">Vegan</option>
+                            <option value="Vegetarian" name="vegetarian">Vegetarian</option>
+                        </select> <br>
+                        Cuisine Regions: <br>
+                        <select name="cuis-area-drop" id="cuis-area-drop">
+                            <option value="None" name="none">None</option>
+                            <option value="American" name="american">American</option>
+                            <option value="British" name="british">British</option>
+                            <option value="Canadian" name="canadian">Canadian</option>
+                            <option value="Chinese" name="chinese">Chinese</option>
+                            <option value="Dutch" name="dutch">Dutch</option>
+                            <option value="French" name="french">French</option>
+                            <option value="Greek" name="greek">Greek</option>
+                            <option value="Irish" name="irish">Irish</option>
+                            <option value="Italian" name="italian">Italian</option>
+                            <option value="Jamaican" name="jamaican">Jamaican</option>
+                            <option value="Malaysian" name="malaysian">Malaysian</option>
+                            <option value="Mexican" name="mexican">Mexican</option>
+                            <option value="moroccan" name="moroccan">Moroccan</option>
+                            <option value="Russian" name="russian">Russian</option>
+                            <option value="Spanish" name="spanish">Spanish</option>
+                            <option value="Thai" name="thai">Thai</option>
+                            <option value="Vietnamese" name="vietnamese">Vietnamese</option>
+                        </select> <br>
+                        <input type="submit" id="select-btn" value="Select">
+                        <input type="reset" value="Clear Form">
+                        <br>
+                    </form>
+
                     <span class="input-group-btn">
                         <button class="btn btn-secondary" type="button" id="category-btn">Food Categories</button>
                     </span>
                     <span class="input-group-btn">
-                        <button class="btn btn-secondary" type="button" id="cuisine-btn">Cuisine Style</button>
+                        <button class="btn btn-secondary" type="button" id="cuisine-btn">Cuisine Area</button>
                     </span>
                     <span class="input-group-btn">
                         <button class="btn btn-secondary" type="button" id="random-drink-btn">Random Drink</button>
@@ -71,9 +112,12 @@
         <div class="row" id="card-section"></div>
         <div class="row" id="image-section"></div>
     </div>
-                    
+    
+    <p>Text-Result</p>
+    <div class="text-result"></div>
 <!-- Script(s) -->                    
     <script src="assets/javascript/search.js"></script>
+    <!-- <script src="search.js"></script> -->
 
 </body>
 </html>
