@@ -241,7 +241,8 @@ Name = Vietnamese
  
 */
 
-$("#select-btn").on("click", function (event) {
+// $("#select-btn").on("click", function (event) {
+/*         $("#dropdownMenuButton").on("click", function (event) {
   event.preventDefault();
   $("#card-section").html("");
   var foodCatSearchString = $("#food-cat-drop").val();
@@ -260,12 +261,12 @@ $("#select-btn").on("click", function (event) {
     if( CURR_DEBUG ) {
       console.log(result);
     }
-    var numItems = result.categories.length;
+    var numItems = result.meals.length;
     for (var i=0; i<numItems; i++) {
-      var itemTitleNum = result.categories[i].idCategory;
-      var itemTitleStr = result.categories[i].strCategory;
-      var itemTextDesc = result.categories[i].strCategoryDescription;
-      var itemURL = result.categories[i].strCategoryThumb;
+      var itemTitleNum = result.meals[i].strArea;
+      var itemTitleStr = result.meals[i].strCategory;
+      var itemTextDesc = result.meals[i].strCategoryDescription;
+      var itemURL = result.meals[i].strCategoryThumb;
       var imageHTML = "<img src=" + itemURL + " alt='Food Category Pic'>";
       createJQuery(itemTitleNum, itemTitleStr, itemTextDesc, itemURL, imageHTML);
     }
@@ -273,16 +274,20 @@ $("#select-btn").on("click", function (event) {
   .fail(function(err) {
     throw err;
   });
-});
+});    */
 
-$("#select-btn").on("click", function (event) {
+// $("#select-btn").on("click", function (event) {
+// $("#dropdownMenuButton").on("click", function (event) { // Takes action before selection
+$(".dropdown-item").on("click", function (event) { //
   event.preventDefault();
   $("#card-section").html("");
-  var cuisAreaSearchString = $("#cuis-area-drop").val();
+  // var cuisAreaSearchString = $("#cuis-area-drop").val();
+  console.log($(this));
+  var cuisAreaSearchString = $(this).text();
   console.log("cuisAreaSearchString = " + cuisAreaSearchString);
 
   // var urlBase = "https://www.thecocktaildb.com/api/json/v1/1/random.php"
-  var urlBase = "https://www.themealdb.com/api/json/v1/1/list.php"
+  var urlBase = "https://www.themealdb.com/api/json/v1/1/filter.php";
   var url = urlBase + "?a=" + cuisAreaSearchString; 
   if( CURR_DEBUG ) {
     console.log (url);
@@ -294,12 +299,12 @@ $("#select-btn").on("click", function (event) {
     if( CURR_DEBUG ) {
       console.log(result);
     }
-    var numItems = result.categories.length;
+    var numItems = result.meals.length;
     for (var i=0; i<numItems; i++) {
-      var itemTitleNum = result.categories[i].idCategory;
-      var itemTitleStr = result.categories[i].strCategory;
-      var itemTextDesc = result.categories[i].strCategoryDescription;
-      var itemURL = result.categories[i].strCategoryThumb;
+      var itemTitleNum = result.meals[i].idCategory;
+      var itemTitleStr = result.meals[i].strCategory;
+      var itemTextDesc = result.meals[i].strCategoryDescription;
+      var itemURL = result.meals[i].strCategoryThumb;
       var imageHTML = "<img src=" + itemURL + " alt='Food Category Pic'>";
       createJQuery(itemTitleNum, itemTitleStr, itemTextDesc, itemURL, imageHTML);
     }
