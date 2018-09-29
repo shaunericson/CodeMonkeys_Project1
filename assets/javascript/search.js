@@ -8,22 +8,23 @@ $(document).ready(function(){
 
   // FUNCTIONS
   // -------------------------------------------
-  function createJQuery (itemTitleNum, itemTitleStr, itemTextDesc, itemURL, imageHTML) {
-    var screenCard = $("<div>").attr("class", "card");
+  function createJQuery (itemTitleNum, itemTitleStr, itemURL, imageHTML) {
+    // var screenCard = $("<div>").attr("class", "card");
+    var screenCard = $("<div>").attr("id", "foodsSelected");
     //  Title
-    var itemText = "<h2>Item " + itemTitleNum + ">&nbsp;" + itemTitleStr + "</h2>";
+    var itemText = "<h2>Item " + itemTitleNum + ":&nbsp;" + itemTitleStr + "</h2>";
 
     //  Description
-    itemText += "<h6>Item Description: " + itemTextDesc + "</h6>";
+    // itemText += "<h6>Item Description: " + itemTextDesc + "</h6>";
 
     // Item URL
-    if( DEBUG ) {
+    if( CURR_DEBUG ) {
       console.log ("********************");
       console.log ("itemURL = " + itemURL);
       console.log ("********************");
     }
     itemText += " <span>Link to Thumb: <a href='" + itemURL + "'>" + itemURL + "</a></span>";
-    if( DEBUG ) {
+    if( CURR_DEBUG ) {
       console.log ("++++++++++++++++++++");
       console.log("itemText = " + itemText);
       console.log ("++++++++++++++++++++");
@@ -31,9 +32,9 @@ $(document).ready(function(){
 
     // APPEND TEXT
     screenCard.html(itemText);
-    $("#card-section").append(screenCard);
+    $("#foodsSelected").append(screenCard);
     var imageCard = $("<div>").attr("class", "card");
-    if( DEBUG ) {
+    if( CURR_DEBUG ) {
       console.log ("====================");
       console.log ("imageHTML = " + imageHTML);
       console.log ("====================");
@@ -41,7 +42,7 @@ $(document).ready(function(){
 
     // APPEND IMAGE
     imageCard.html(imageHTML);
-    $("#card-section").append(imageCard);
+    $("#foodsSelected").append(imageCard);
   }  
 
     // BUTTON Section 
@@ -301,12 +302,11 @@ $(".dropdown-item").on("click", function (event) { //
     }
     var numItems = result.meals.length;
     for (var i=0; i<numItems; i++) {
-      var itemTitleNum = result.meals[i].idCategory;
-      var itemTitleStr = result.meals[i].strCategory;
-      var itemTextDesc = result.meals[i].strCategoryDescription;
-      var itemURL = result.meals[i].strCategoryThumb;
+      var itemTitleNum = result.meals[i].idMeal;
+      var itemTitleStr = result.meals[i].strMeal;
+      var itemURL = result.meals[i].strMealThumb;
       var imageHTML = "<img src=" + itemURL + " alt='Food Category Pic'>";
-      createJQuery(itemTitleNum, itemTitleStr, itemTextDesc, itemURL, imageHTML);
+      createJQuery(itemTitleNum, itemTitleStr, itemURL, imageHTML);
     }
 })
   .fail(function(err) {

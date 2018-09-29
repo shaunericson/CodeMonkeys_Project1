@@ -45,12 +45,31 @@
             <h1 class="text-center">Mealgenie</h1>
         </div>
         <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
+            <div class="col-md-4"></div>
+            <div class="col-md-2">
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-                        Food Regions
+                        Cuisine Types
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" id="beef" href="#">Beef</a>
+                        <a class="dropdown-item" id="chicken" href="#">Chicken</a>
+                        <a class="dropdown-item" id="lamb" href="#">Lamb</a>
+                        <a class="dropdown-item" id="pasta" href="#">Pasta</a>
+                        <a class="dropdown-item" id="pork" href="#">Pork</a>
+                        <a class="dropdown-item" id="seafood" href="#">Seafood</a>
+                        <a class="dropdown-item" id="vegan" href="#">Vegan</a>
+                        <a class="dropdown-item" id="vegetarian" href="#">Vegetarian</a>
+                        <a class="dropdown-item" id="desert" href="#">Desert</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Cuisine Regions
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" id="american" href="#">American</a>
@@ -73,61 +92,30 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-2"></div>
-            <div class="col-md-12">
-                <p class="text-center" id="turnMessage">Turn Message</p>
-            </div>
+            <div class="col-md-4"></div>
         </div>
         <div class="row">
             <div class="col-md-4">
                 <div class="row box-border text-center">
-                    <div class="col-md-12">
-                        <p>Test</p>
+                    <div class="col-md-12" id="foodsSelected">
+                        <p>Location for return of food...</p>
                     </div>
-                    <div class="col-md-12 text-center">
-                        <p>Test</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row box-border text-center" id="drinksSelected">
+                    <div class="col-md-12">
+                        <p>Location for drinks to be selected...</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="row box-border text-center">
                     <div class="col-md-12">
-                        <p>Test</p>
-                    </div>
-                    <div class="col-md-12 text-center">
-                        <p>Test</p>
+                        <p>Location for last food & drink pairing...</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="row box-border text-center">
-                    <div class="col-md-12">
-                        <p>Test</p>
-                    </div>
-                    <div class="col-md-12 text-center">
-                        <p>Test</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8 chat-border" id="chatMessageWindow"></div>
-            <div class="col-md-2"></div>
-        </div>
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-7 chatMessage">
-                <form>
-                    <input type="text" class="form-control" id="chatMessage">
-                </form>
-            </div>
-            <div class="col-md-1 chatMessageSend">
-                <form>
-                    <button type="submit" class="btn btn-secondary" id="submitMessage">Submit</button>
-                </form>
-            </div>
-            <div class="col-md-2"></div>
         </div>
     </div>
 </body>
