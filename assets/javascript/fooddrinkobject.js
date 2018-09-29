@@ -80,25 +80,137 @@ var cuisRegion = {
         ID: 1,
         name: "American",
         drinks: [
-            12215,
             12214,
-            12213]
+            15266,
+            12876]
     },
     british: {
         ID: 2,
         name: "British",
         drinks: [
-            12115,
-            12114,
-            12113]
+            12796,
+            12214,
+            12055]
     },
     canadian: {
         ID: 3,
         name: "Canadian",
         drinks: [
-            12015,
-            12014,
-            12013]
+            17268,
+            12876,
+            12071]
+    },
+    chinese: {
+        ID: 4,
+        name: "Chinese",
+        drinks: [
+            15266,
+            12214,
+            17181]
+    },
+    dutch: {
+        ID: 5,
+        name: "Dutch",
+        drinks: [
+            12071,
+            12876,
+            15266]
+    },
+    french: {
+        ID: 6,
+        name: "French",
+        drinks: [
+            17268,
+            12796,
+            17181]
+    },
+    greek: {
+        ID: 7,
+        name: "Greek",
+        drinks: [
+            12796,
+            12876,
+            15266]
+    },
+    irish: {
+        ID: 8,
+        name: "Irish",
+        drinks: [
+            14642,
+            12796,
+            12214]
+    },
+    italian: {
+        ID: 9,
+        name: "Italian",
+        drinks: [
+            15266,
+            17181,
+            12071]
+    },
+    jamaican: {
+        ID: 10,
+        name: "Jamaican",
+        drinks: [
+            12214,
+            15266,
+            12071]
+    },
+    malaysian: {
+        ID: 11,
+        name: "Malaysian",
+        drinks: [
+            17268,
+            12071,
+            12796]
+    },
+    mexican: {
+        ID: 12,
+        name: "Mexican",
+        drinks: [
+            12796,
+            15266,
+            12214]
+    },
+    moroccan: {
+        ID: 13,
+        name: "Moroccan",
+        drinks: [
+            12876,
+            12796,
+            12214]
+    },
+    russian: {
+        ID: 14,
+        name: "Russian",
+        drinks: [
+            12071,
+            12876,
+            12055]
+    },
+    spanish: {
+        ID: 15,
+        name: "Spanish",
+        drinks: [
+            12796,
+            12214,
+            12876]
+    },
+    thai: {
+        ID: 16,
+        name: "Thai",
+        drinks: [
+            15266,
+            17181,
+            12214]
+    },
+    vietnamese: {
+        ID: 18,
+        name: "Vietnamese",
+        drinks: [
+            12876,
+            12055,
+            12214]
     }
 };
 
