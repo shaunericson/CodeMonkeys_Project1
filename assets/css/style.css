@@ -1,3 +1,16 @@
 div {
     padding: 10px 10px;
 }
+
+#item-link {
+    display: block;
+    color: gold;
+    font-weight: bolder;
+}
+
+#item-image {
+    width: 300px;
+    height: 300px;
+    margin-bottom: 30px;
+}
+
