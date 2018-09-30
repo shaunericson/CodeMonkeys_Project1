@@ -9,8 +9,17 @@ $(document).ready(function(){
   // FUNCTIONS
   // -------------------------------------------
   function createJQuery (itemTitleNum, itemTitleStr, itemURL, imageHTML) {
-    // var screenCard = $("<div>").attr("class", "card");
-    var screenCard = $("<div>").attr("id", "foodsSelected");
+    var screenCard = $("<div>")
+        .attr("class", "card")
+        .attr("id", "item-selected")
+        .attr("width", "18rem");
+    var screenCardTitle =$("<h5>")
+        .attr("class", "card-title")
+        .attr("id", "item-title");
+    var screenCardBody = $("<div>")
+        .attr("class", "card-body")
+        .attr("id", "item-body");
+
     //  Title
     var itemText = "<h5 id='item-link'><a href='" + itemURL + "'>" + itemTitleStr + "</a></h5>";
 
@@ -21,23 +30,20 @@ $(document).ready(function(){
       console.log ("itemTitleStr = " + itemTitleStr);
       console.log ("itemURL = " + itemURL);
       console.log("itemText = " + itemText);
+      console.log ("imageHTML = " + imageHTML);
       console.log ("********************");
     }
 
-    // APPEND TEXT
-    screenCard.html(itemText);
-    $("#foodsSelected").append(screenCard);
-    var imageCard = $("<div>").attr("class", "card");
-    imageCard.attr("id", "item-image");
-    if( DEBUG ) {
-      console.log ("====================");
-      console.log ("imageHTML = " + imageHTML);
-      console.log ("====================");
-    }
+    // APPEND TITLE
+    screenCardTitle.html(itemText);
+    screenCard.append(screenCardTitle);
 
     // APPEND IMAGE
-    imageCard.html(imageHTML);
-    $("#foodsSelected").append(imageCard);
+    screenCardBody.html(imageHTML);
+    screenCard.append(screenCardBody);
+
+    // APPEND CARD TO PAGE
+    $("#foodsSelected").append(screenCard);
   }  
 
     // BUTTON Section 
@@ -116,7 +122,7 @@ $(".dropdown-item").on("click", function (event) {
       var itemTitleNum = result.meals[i].idMeal;
       var itemTitleStr = result.meals[i].strMeal;
       var itemURL = result.meals[i].strMealThumb;
-      var imageHTML = "<img src=" + itemURL + " alt='Food Category Pic'>";
+      var imageHTML = "<img src=" + itemURL + " alt='Food Category Pic' id='item-image'>";
       createJQuery(itemTitleNum, itemTitleStr, itemURL, imageHTML);
     }
 })

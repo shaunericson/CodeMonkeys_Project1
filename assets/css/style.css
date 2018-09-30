@@ -9,8 +9,8 @@ div {
 }
 
 #item-image {
-    width: 300px;
-    height: 300px;
+    max-width: 17rem;
+    max-height: 17rem;
     margin-bottom: 30px;
 }
 
