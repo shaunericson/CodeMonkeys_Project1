@@ -7,3 +7,5 @@ __09/29/18: Presenting meals in real index.html. Code cleanup.__
 __09/29/18: Added image size values in styles.css, clears previous display, both region and categorey are working__
 
 __09/29/18: Created card, card-body, card-title to style images.
+
+__10/01/18: Incorporated presenting drinks per meal selected.__
