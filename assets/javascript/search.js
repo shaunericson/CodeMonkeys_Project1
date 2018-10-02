@@ -279,10 +279,12 @@ $(document).ready(function(){
       // Instead of if/else, this construct leaves the hooks in to select based on BOTH later.
       if (getDrinkRegID !== undefined) {
         console.log("cuisRegion = ", cuisRegion);
+        console.log(cuisRegion);
         console.log("cuisRegion.getDrinkRegID = ", cuisRegion.getDrinkRegID);
-        console.log("cuisRegion.getDrinkRegID.drinks = ", cuisRegion.getDrinkRegID.drinks);
+        console.log( cuisRegion[getDrinkRegID]);
+        console.log("cuisRegion.getDrinkRegID.drinks = ", cuisRegion[getDrinkRegID].drinks);
         var mealIdDrinks = [];
-        var mealIdDrinks = cuisRegion.getDrinkRegID.drinks;
+        var mealIdDrinks = cuisRegion[getDrinkRegID].drinks;
       };
       if( CURR_DEBUG ) {
         console.log( mealIdDrinks);
