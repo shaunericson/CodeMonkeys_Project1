@@ -5,52 +5,33 @@ $(document).ready(function(){
   // -------------------------------------------
   var DEBUG = false;
   var CURR_DEBUG = true;
-  // var goFindDrinks; // = $("<button>");
 
   // FUNCTIONS
   // -------------------------------------------
   function createJQuery (itemTitleNum, itemTitleStr, itemURL, imageHTML, catIDin, regIDin) {
     var screenCard = $("<div>")
         .attr("class", "card")
-        // .attr("id", "item-selected") // Not used?
         .attr("width", "18rem");
     var screenCardTitle =$("<h5>")
         .addClass("card-title")
         .attr("id",'item-link');
-
-    // var scTitleLink = $("<a>")
-    // .attr('href', '" + itemURL + "'>" + itemTitleStr + "</a>");
     var screenCardBody = $("<div>")
         .attr("class", "card-body")
-    // var goFindDrinks = $("<button>") // <button type="button" class="btn btn-primary">
-            // var goFindDrinks = $("<button>") // 
-            //     .addClass("btn btn-primary")
-            //     .addClass("go-find-btn")
-            //     .attr("id", "btn-num-one")
-            //     .attr("type", "button")
-            //     .attr("data-cat-id", catIDin)
-            //     .attr("data-reg-id", regIDin)
-            //     .attr("data-id", itemTitleNum);
-        // .text("Select This Meal");
-    var goFindDrinks = $("<a>").addClass("btn btn-primary go-find-btn")
-        // .addClass("btn btn-primary go-find-btn")
+    var goFindDrinks = $("<a>")
+        .addClass("btn btn-primary go-find-btn")
         .attr("href", "#")
         .attr("role", "button")
-        // .attr("id", "btn-num-one")
         .attr("data-cat-id", catIDin)
         .attr("data-reg-id", regIDin)
         .attr("data-id", itemTitleNum)
-        .text("go-find-btn" + itemTitleNum + catIDin + regIDin);
+        // .text("go-find-btn" + itemTitleNum + catIDin + regIDin);
+        .text("Select");
         // .onclick(getDrinks(this.getAttribute(data-id),     // Jeff's vectored to 
         //                    this.getAttribute(data-cat-id),
         //                    this.getAttribute(data-reg-id)));
 
-// <a class="btn btn-primary" href="#" role="button">Link</a>
-//type="submit"        
-// <a class="dropdown-item" data-type="area" id="american" href="#">American</a>
     // Title
     var itemText = "<h5 id='item-link'><a href='" + itemURL + "'>" + itemTitleStr + "</a></h5>";
-    // var selectText = "HI"; // "<h5><a href='#'>"  + "Select This Meal</a></h5>";
 
     // Item URL
     if( DEBUG ) {
@@ -68,7 +49,6 @@ $(document).ready(function(){
     screenCard.append(screenCardTitle);
 
     // APPEND SELECT BUTTON FOR THIS MEAL
-    // goFindDrinks.html(selectText);
     screenCard.append(goFindDrinks);
 
     // APPEND IMAGE  
@@ -157,39 +137,13 @@ $(document).ready(function(){
   };
 
   // BUTTON Section 
-  // -------------------------------------------
-  // Go find drinks for this selection...
-  // $(".go-find-btn").on("click", function (event) {
-  $("#btn-num-one").on("click", function (event) {
-    console.log("WE GOT HERE, via #btn-num-one, SELECTED A MEAL!!!");
-    // event.preventDefault();
-    $("#drinksSelected").html(""); // Clears Panel, but need to represent meal selected
-    var mealID = $(this).attr("data-id");
-    var getDrinkCatID = $(this).attr("data-cat-id");
-    var getDrinkRegID = $(this).attr("data-reg-id");
-    if( CURR_DEBUG ) {
-      console.log($(this));
-      console.log("mealID = " + mealID);
-      console.log("getDrinkCatID = " + getDrinkCatID);
-      console.log("getDrinkRegID = " + getDrinkRegID);
-    }
-    if (getDrinkCatID){
-      var mealIdDrinks = cuisType.getDrinkCatID.drinks;
-    };
-    // Instead of if/else, this construct leaves the hooks in to select based on BOTH later.
-    if (getDrinkRegID) {
-      var mealIdDrinks = cuisRegion.getDrinkRegID.drinks;
-    };
-    if( CURR_DEBUG ) {
-      console.log("mealIdDrinks = " + mealIdDrinks);
-    }
-    showDrinksJQuery(mealIdDrinks); 
-  } );
-
+  // ===================================================
   // Cusine Button and Region Button Combined
+  // -------------------------------------------
   $(".dropdown-item").on("click", function (event) {
     event.preventDefault();
-    $("#foodsSelected").html("");
+    $("#foodsSelected").html(""); // Clears Panel
+    $("#drinksSelected").html(""); // Clears Panel
     var cuisSearchString = $(this).text();
     var btnType = $(this).attr("data-type");
     var urlBase = "https://www.themealdb.com/api/json/v1/1/filter.php";
@@ -207,7 +161,6 @@ $(document).ready(function(){
       console.log ("--------------------");
       console.log($(this));
       console.log("cuisSearchString = " + cuisSearchString);
-      // console.log("mealID = " + mealID);
       console.log("catID = " + catID);
       console.log("regID = " + regID);
       console.log ("--------------------");
@@ -237,11 +190,8 @@ $(document).ready(function(){
     });
   });
 
-
-
-
-  // Extra for debug
-  // ===================================================
+  // Select Button on each meal presented
+  // -------------------------------------------
   // Go find drinks for this selection...
   $("#foodsSelected").on("click", ".go-find-btn", function () { // ADDED ".go-find-btn" to get JS to dive into the object
       console.log("WE GOT HERE, via .go-find-btn,  SELECTED A MEAL!!!");
@@ -254,37 +204,34 @@ $(document).ready(function(){
       var getDrinkCatID = $(this).attr("data-cat-id");
       var getDrinkRegID = $(this).attr("data-reg-id");
       var mealID = $(this).attr("data-id");
-              // console.log(childBtn);
-              // console.log( "var mealID = " + $("div a[data-id]").attr('data-id'));
-
-      // var mealID = $("div a[data-id]").attr('data-id');
-      // var getDrinkCatID = $("div a[data-id]").attr('data-cat-id');
-      // var getDrinkRegID = $("div a[data-id]").attr('data-reg-id');
       if( CURR_DEBUG ) {
-                console.log($(this));
-                console.log("mealID = " + mealID);
-                console.log("getDrinkCatID = " + getDrinkCatID);
-                console.log("getDrinkRegID = " + getDrinkRegID);
-}
+        console.log($(this));
+        console.log("mealID = " + mealID);
+        console.log("getDrinkCatID = " + getDrinkCatID);
+        console.log("getDrinkRegID = " + getDrinkRegID);
+      }
 
       if (getDrinkCatID !== undefined) {
-        console.log("cuisType = ", cuisType);
-        console.log(cuisType);
-        console.log("cuisType.getDrinkCatID = ", cuisType.getDrinkCatID);
-        console.log( cuisType[getDrinkCatID]);
-        console.log("cuisType.getDrinkCatgID.drinks = ", cuisType[getDrinkCatID].drinks);
         var mealIdDrinks = cuisType[getDrinkCatID].drinks;
-        console.log( mealIdDrinks);
+        if( DEBUG ) {
+          console.log("cuisType = ", cuisType);
+          console.log(cuisType);
+          console.log("cuisType.getDrinkCatID = ", cuisType.getDrinkCatID);
+          console.log( cuisType[getDrinkCatID]);
+          console.log("cuisType.getDrinkCatgID.drinks = ", cuisType[getDrinkCatID].drinks);
+          console.log( mealIdDrinks);
+        }
       };
       // Instead of if/else, this construct leaves the hooks in to select based on BOTH later.
       if (getDrinkRegID !== undefined) {
-        console.log("cuisRegion = ", cuisRegion);
-        console.log(cuisRegion);
-        console.log("cuisRegion.getDrinkRegID = ", cuisRegion.getDrinkRegID);
-        console.log( cuisRegion[getDrinkRegID]);
-        console.log("cuisRegion.getDrinkRegID.drinks = ", cuisRegion[getDrinkRegID].drinks);
-        var mealIdDrinks = [];
         var mealIdDrinks = cuisRegion[getDrinkRegID].drinks;
+        if( DEBUG ) {
+          console.log("cuisRegion = ", cuisRegion);
+          console.log(cuisRegion);
+          console.log("cuisRegion.getDrinkRegID = ", cuisRegion.getDrinkRegID);
+          console.log( cuisRegion[getDrinkRegID]);
+          console.log("cuisRegion.getDrinkRegID.drinks = ", cuisRegion[getDrinkRegID].drinks);
+        }
       };
       if( CURR_DEBUG ) {
         console.log( mealIdDrinks);

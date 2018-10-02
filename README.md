@@ -12,4 +12,6 @@ __10/01/18: Incorporated presenting drinks per meal selected.__
 
 __10/01/18: Fixed bug in selection by region.__
 
+__10/01/18: Some Code Clean-Up in javascript file search.js.__
+
 
