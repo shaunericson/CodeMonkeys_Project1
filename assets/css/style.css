@@ -2,7 +2,7 @@ div {
     padding: 10px 10px;
 }
 
-#item-link {
+#item-link, #drink-link {
     display: block;
     color: gold;
     font-weight: bolder;

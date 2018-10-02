@@ -8,12 +8,12 @@ $(document).ready(function(){
 
   // FUNCTIONS
   // -------------------------------------------
-  function createJQuery (itemTitleNum, itemTitleStr, itemURL, imageHTML, catIDin, regIDin) {
+  function showFoodsJQuery (destCol, itemTitleNum, itemTitleStr, itemURL, imageHTML, catIDin, regIDin) {
     var screenCard = $("<div>")
         .attr("class", "card")
+        .addClass("card-title")
         .attr("width", "18rem");
     var screenCardTitle =$("<h5>")
-        .addClass("card-title")
         .attr("id",'item-link');
     var screenCardBody = $("<div>")
         .attr("class", "card-body")
@@ -56,33 +56,41 @@ $(document).ready(function(){
     screenCard.append(screenCardBody);
 
     // APPEND CARD TO PAGE
-    $("#foodsSelected").append(screenCard);
+    $("#" + destCol).append(screenCard);
   };
 
   // Display the Drinks for this meal selection
-  function showDrinksJQuery (mealIdDrinksIn) {
-    mealIdDrinksIn.map(function (array, index) {
-      console.log(array );
+  function showDrinksJQuery (destCol, mealIdDrinksIn, mealIdIn, catIDin, regIDin) {
+    mealIdDrinksIn.map(function (item, index) {
+      console.log(item );
       console.log( index);
       var drinkCard = $("<div>")
         .attr("class", "card")
-        .attr("id", "drink-selected") // TBD Not used?
+        .attr("id",'item-link')
         .attr("width", "18rem");
       var drinkCardTitle =$("<h5>")
         .attr("class", "card-title");
-        // .attr("id", "drink-title"); // TBD Not used?
       var drinkCardBody = $("<div>")
         .attr("class", "card-body");
-        // .attr("id", "drink-body"); // TBD Not used?
+      var selectDrink = $("<a>")
+        .addClass("btn btn-primary sel-drink-btn")
+        .attr("href", "#")
+        .attr("role", "button")
+        .attr("data-cat-id", catIDin)
+        .attr("data-reg-id", regIDin)
+        .attr("data-id", mealIdIn)
+        .attr("data-drink-id", item)
+        // .text("sel-drink-btn " + mealIdIn + " " + catIDin + " " + regIDin);
+        .text("Select");
 
       // Drink URL from appropriate FoodDrinkObjects cuisType/cuisRegion.cat/reg.drinks[]
       var baseURL = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php";
-      var drinkIDtoGet = array;
+      var drinkIDtoGet = item;
       var searchURL = "?i=" + drinkIDtoGet;
       var url = baseURL + searchURL;
       
       console.log ( drinkIDtoGet );
-      console.log ( array);
+      console.log ( item);
       console.log ( searchURL = "?i=" + drinkIDtoGet);
       console.log ( url = baseURL + searchURL);
 
@@ -121,6 +129,7 @@ $(document).ready(function(){
         drinkCard.append(drinkCardTitle);
 
         // ADD BUTTON TO SELECT DRINK AND STORE MEAL/DRINK PAIR IN FIREBASE
+        drinkCard.append(selectDrink);
         
         
         // APPEND IMAGE
@@ -128,7 +137,7 @@ $(document).ready(function(){
         drinkCard.append(drinkCardBody);
 
         // APPEND CARD TO PAGE
-        $("#drinksSelected").append(drinkCard);
+        $("#" + destCol).append(drinkCard);
       } )
       .fail(function(err) {
         throw err;
@@ -139,11 +148,13 @@ $(document).ready(function(){
   // BUTTON Section 
   // ===================================================
   // Cusine Button and Region Button Combined
-  // -------------------------------------------
+  // ---------------------------------------------------
   $(".dropdown-item").on("click", function (event) {
     event.preventDefault();
     $("#foodsSelected").html(""); // Clears Panel
     $("#drinksSelected").html(""); // Clears Panel
+    $("#pairingMealSelected").html(""); // Clears Panel
+    $("#pairingDrinkSelected").html(""); // Clears Panel
     var cuisSearchString = $(this).text();
     var btnType = $(this).attr("data-type");
     var urlBase = "https://www.themealdb.com/api/json/v1/1/filter.php";
@@ -182,7 +193,7 @@ $(document).ready(function(){
         var itemTitleStr = result.meals[i].strMeal;
         var itemURL = result.meals[i].strMealThumb;
         var imageHTML = "<img src=" + itemURL + " alt='Food Category Pic' class='item-image'>";
-        createJQuery(itemTitleNum, itemTitleStr, itemURL, imageHTML, catID, regID);
+        showFoodsJQuery( "foodsSelected", itemTitleNum, itemTitleStr, itemURL, imageHTML, catID, regID);
       }
     })
     .fail(function(err) {
@@ -191,7 +202,7 @@ $(document).ready(function(){
   });
 
   // Select Button on each meal presented
-  // -------------------------------------------
+  // ---------------------------------------------------
   // Go find drinks for this selection...
   $("#foodsSelected").on("click", ".go-find-btn", function () { // ADDED ".go-find-btn" to get JS to dive into the object
       console.log("WE GOT HERE, via .go-find-btn,  SELECTED A MEAL!!!");
@@ -200,7 +211,7 @@ $(document).ready(function(){
       console.log("===========================");
       event.preventDefault();
       $("#drinksSelected").html(""); // Clears Panel, but need to represent meal selected
-      var mealID = $(this).attr("data-id");
+      // var mealID = $(this).attr("data-id");
       var getDrinkCatID = $(this).attr("data-cat-id");
       var getDrinkRegID = $(this).attr("data-reg-id");
       var mealID = $(this).attr("data-id");
@@ -236,6 +247,55 @@ $(document).ready(function(){
       if( CURR_DEBUG ) {
         console.log( mealIdDrinks);
       }
-      showDrinksJQuery(mealIdDrinks); 
+      showDrinksJQuery("drinksSelected", mealIdDrinks, mealID, getDrinkCatID, getDrinkRegID);
     } );
+
+
+    // Select Button on each drink presented
+    // ---------------------------------------------------
+    // Go find drinks for this selection...
+    $("#drinksSelected").on("click", ".sel-drink-btn", function () { // ADDED ".sel-drink-btn" to get JS to dive into the object
+    console.log("WE HERE TO DISPLAY A PARING, via .go-find-btn,  MEAL & DRINK SELECTED!");
+    console.log("===========================");
+    console.log(this);
+    console.log("===========================");
+    event.preventDefault();
+    $("#pairingMealSelected").html(""); // Clears Panel
+    $("#pairingDrinkSelected").html(""); // Clears Panel
+    var mealID = $(this).attr("data-id");
+    var drinkID = $(this).attr("data-drink-id");
+    if( CURR_DEBUG ) {
+      console.log($(this));
+      console.log("mealID = " + mealID);
+      console.log("drinkID = " + drinkID);
+    }
+
+    // Create meal URL
+    var urlBase = "https://www.themealdb.com/api/json/v1/1/lookup.php";
+    var url = urlBase + "?i=" + mealID; 
+
+    if( CURR_DEBUG ) {
+      console.log ("mealURL" + url);
+    }
+    $.ajax({
+      url: url,
+      method: 'GET',
+    }).done(function(result) {
+      if( CURR_DEBUG ) {
+        console.log(result);
+      }
+      var itemTitleNum = result.meals[0].idMeal;
+      var itemTitleStr = result.meals[0].strMeal;
+      var itemURL = result.meals[0].strMealThumb;
+      var imageHTML = "<img src=" + itemURL + " alt='Food Category Pic' class='item-image'>";
+      showFoodsJQuery( "pairingMealSelected", itemTitleNum, itemTitleStr, itemURL, imageHTML, null, null ); // catID, regID);
+    })
+    .fail(function(err) {
+      throw err;
+    });
+    
+    // Create meal URL
+    drinkIDasArr = [drinkID];
+    showDrinksJQuery("pairingDrinkSelected", drinkIDasArr, mealID, null, null );// getDrinkCatID, getDrinkRegID);
+  });
 });
