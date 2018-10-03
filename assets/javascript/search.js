@@ -99,7 +99,7 @@ $(document).ready(function(){
       console.log( index);
       var drinkCard = $("<div>")
         .attr("class", "card")
-        .attr("id",'item-link')
+        .attr("id",'drink-link')
         .attr("width", "18rem");
       var drinkCardTitle =$("<h5>")
         .attr("class", "card-title");
@@ -220,17 +220,29 @@ $(document).ready(function(){
       console.log("The read failed: " + errorObject.code);
   }); // End of database functinality
 
-
+  // ===================================================
+  // ===================================================
+  // ===================================================
+  // START of Main Program
+  // ===================================================
+  // ===================================================
+  // ===================================================
+  
+  // Clear Drink Selection Title
+  $("#drinksSelectedTitle").css("display", "none");
+  $("#drinksSelected").css("display", "block");
 
   // ===================================================
   // BUTTON Section 
   // ===================================================
   // Cusine Button and Region Button Combined
   // ---------------------------------------------------
-  $(".dropdown-item").on("click", function (event) {
+  $(".dropdown-item").on("click", function () {
     event.preventDefault();
     $("#foodsSelected").html(""); // Clears Panel
     $("#drinksSelected").html(""); // Clears Panel
+    $("#foodsSelectedTitle").text("Select Your Main Entree Dish Below...");
+    // $("#drinksSelectedTitle").css("display: none");
     // $("#pairingMealSelected").html(""); // Clears Panel
     // $("#pairingDrinkSelected").html(""); // Clears Panel
     var cuisSearchString = $(this).text();
@@ -283,10 +295,13 @@ $(document).ready(function(){
   // ---------------------------------------------------
   // Go find drinks for this selection...
   $("#foodsSelected").on("click", ".go-find-btn", function () { // ADDED ".go-find-btn" to get JS to dive into the object
+    $("#drinksSelectedTitle").css("display", "block");
+    if( CURR_DEBUG ) {
       console.log("WE GOT HERE, via .go-find-btn,  SELECTED A MEAL!!!");
       console.log("===========================");
       console.log(this);
       console.log("===========================");
+    }
       event.preventDefault();
       $("#drinksSelected").html(""); // Clears Panel, but need to represent meal selected
       // var mealID = $(this).attr("data-id");
@@ -333,7 +348,7 @@ $(document).ready(function(){
     // ---------------------------------------------------
     // Go find drinks for this selection...
     $("#drinksSelected").on("click", ".sel-drink-btn", function () { // ADDED ".sel-drink-btn" to get JS to dive into the object
-    console.log("WE HERE TO DISPLAY A PARING, via .go-find-btn,  MEAL & DRINK SELECTED!");
+    console.log("WE HERE TO DISPLAY A PARING, via .sel-drink-btn,  MEAL & DRINK SELECTED!");
     console.log("===========================");
     console.log(this);
     console.log("===========================");

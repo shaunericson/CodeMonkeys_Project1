@@ -3,20 +3,17 @@ div {
 }
 
 #item-link, #drink-link {
-    display: block;
+    /* display: block; */
     color: gold;
     font-weight: bolder;
 }
 
-.item-image {
-    max-width: 17rem;
-    max-height: 17rem;
+.item-image, .drink-image {
+    /* max-width: 17rem;
+    max-height: 17rem; */
     margin-bottom: 30px;
+    width:100%;
+    height:auto;
 }
 
-.drink-image {
-    max-width: 17rem;
-    max-height: 17rem;
-    margin-bottom: 30px;
 
-}
