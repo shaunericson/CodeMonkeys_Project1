@@ -18,4 +18,6 @@ __10/02/18: Basic Functionality before adding firebase.__
 
 __10/02/18: Added FireBase Connectivity__
 
+__10/03/18: Cleaned up presentation, immages stay in cards now.__
+
 
