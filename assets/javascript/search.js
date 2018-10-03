@@ -1,13 +1,49 @@
 // Food n' Drink Search
 
 $(document).ready(function(){
+  
+  // ===================================================
   // VARS
-  // -------------------------------------------
+  // ===================================================
   var DEBUG = false;
   var CURR_DEBUG = true;
 
+  // Update web page HTML from database...
+  function updatePairPresented (mealID, drinkID) {
+    // Create meal URL
+    var urlBase = "https://www.themealdb.com/api/json/v1/1/lookup.php";
+    var url = urlBase + "?i=" + mealID; 
+
+    if( CURR_DEBUG ) {
+      console.log ("mealURL" + url);
+    }
+    $.ajax({
+      url: url,
+      method: 'GET',
+    }).done(function(result) {
+      if( CURR_DEBUG ) {
+        console.log(result);
+      }
+      var itemTitleNum = result.meals[0].idMeal;
+      var itemTitleStr = result.meals[0].strMeal;
+      var itemURL = result.meals[0].strMealThumb;
+      var imageHTML = "<img src=" + itemURL + " alt='Food Category Pic' class='item-image'>";
+      showFoodsJQuery( "pairingMealSelected", itemTitleNum, itemTitleStr, itemURL, imageHTML, null, null ); // catID, regID);
+    })
+    .fail(function(err) {
+      throw err;
+    });
+    
+    // Create meal URL
+    drinkIDasArr = [drinkID];
+    showDrinksJQuery("pairingDrinkSelected", drinkIDasArr, mealID, null, null );// getDrinkCatID, getDrinkRegID);
+  };
+
+  // ===================================================
   // FUNCTIONS
-  // -------------------------------------------
+  // ===================================================
+  // Display meal selected...
+  // ---------------------------------------------------
   function showFoodsJQuery (destCol, itemTitleNum, itemTitleStr, itemURL, imageHTML, catIDin, regIDin) {
     var screenCard = $("<div>")
         .attr("class", "card")
@@ -24,11 +60,7 @@ $(document).ready(function(){
         .attr("data-cat-id", catIDin)
         .attr("data-reg-id", regIDin)
         .attr("data-id", itemTitleNum)
-        // .text("go-find-btn" + itemTitleNum + catIDin + regIDin);
         .text("Select");
-        // .onclick(getDrinks(this.getAttribute(data-id),     // Jeff's vectored to 
-        //                    this.getAttribute(data-cat-id),
-        //                    this.getAttribute(data-reg-id)));
 
     // Title
     var itemText = "<h5 id='item-link'><a href='" + itemURL + "'>" + itemTitleStr + "</a></h5>";
@@ -60,6 +92,7 @@ $(document).ready(function(){
   };
 
   // Display the Drinks for this meal selection
+  // ---------------------------------------------------
   function showDrinksJQuery (destCol, mealIdDrinksIn, mealIdIn, catIDin, regIDin) {
     mealIdDrinksIn.map(function (item, index) {
       console.log(item );
@@ -145,6 +178,51 @@ $(document).ready(function(){
     })
   };
 
+
+  
+  // ===================================================
+  // FIREBASE DATABASE
+  // ===================================================
+  // Create a variable to reference the database
+  // ---------------------------------------------------
+  var database = firebase.database();
+
+  // At the initial load and on subsequent data value changes, get a snapshot of the current data. (I.E FIREBASE HERE)
+  database.ref().on('value', function(snapshot) {  // DATABASE LISTENER!!!
+    // We are now inside our .on function...
+    // Console.log the "snapshot" value (a point-in-time representation of the database)
+    if (DEBUG) {
+        console.log(snapshot.val());
+    };
+    
+    var dbDrinkIdDB;
+    var dbMealIdDB;
+    snapshot.forEach(function(pairSnapshot) {
+      var pairKey = pairSnapshot.key;
+      var pairData = pairSnapshot.val();
+      if (pairKey === "drinkIdDB") {
+        dbDrinkIdDB = pairData;
+      } else {
+        dbMealIdDB = pairData
+      }
+      console.log("dbMealIdDB = "  + dbMealIdDB);
+      console.log("dbDrinkIdDB = "  + dbDrinkIdDB);
+    });
+
+    // Call function that updates the HTML page...
+    $("#pairingMealSelected").html(""); // Clears Panel
+    $("#pairingDrinkSelected").html(""); // Clears Panel
+    updatePairPresented ( dbMealIdDB, dbDrinkIdDB );
+  },
+  // Then include Firebase error logging
+  function(errorObject) {
+      throw err;
+      console.log("The read failed: " + errorObject.code);
+  }); // End of database functinality
+
+
+
+  // ===================================================
   // BUTTON Section 
   // ===================================================
   // Cusine Button and Region Button Combined
@@ -153,8 +231,8 @@ $(document).ready(function(){
     event.preventDefault();
     $("#foodsSelected").html(""); // Clears Panel
     $("#drinksSelected").html(""); // Clears Panel
-    $("#pairingMealSelected").html(""); // Clears Panel
-    $("#pairingDrinkSelected").html(""); // Clears Panel
+    // $("#pairingMealSelected").html(""); // Clears Panel
+    // $("#pairingDrinkSelected").html(""); // Clears Panel
     var cuisSearchString = $(this).text();
     var btnType = $(this).attr("data-type");
     var urlBase = "https://www.themealdb.com/api/json/v1/1/filter.php";
@@ -270,32 +348,15 @@ $(document).ready(function(){
       console.log("drinkID = " + drinkID);
     }
 
-    // Create meal URL
-    var urlBase = "https://www.themealdb.com/api/json/v1/1/lookup.php";
-    var url = urlBase + "?i=" + mealID; 
-
-    if( CURR_DEBUG ) {
-      console.log ("mealURL" + url);
-    }
-    $.ajax({
-      url: url,
-      method: 'GET',
-    }).done(function(result) {
-      if( CURR_DEBUG ) {
-        console.log(result);
-      }
-      var itemTitleNum = result.meals[0].idMeal;
-      var itemTitleStr = result.meals[0].strMeal;
-      var itemURL = result.meals[0].strMealThumb;
-      var imageHTML = "<img src=" + itemURL + " alt='Food Category Pic' class='item-image'>";
-      showFoodsJQuery( "pairingMealSelected", itemTitleNum, itemTitleStr, itemURL, imageHTML, null, null ); // catID, regID);
-    })
-    .fail(function(err) {
-      throw err;
+    // Save new value to Firebase
+    database.ref().set({ // Using PUSH creates child objects, vs SET overwrites data already there
+      mealIdDB: mealID, // Posting this  object to the database in the cloud
+      drinkIdDB: drinkID // Posting this  object to the database in the cloud
     });
-    
-    // Create meal URL
-    drinkIDasArr = [drinkID];
-    showDrinksJQuery("pairingDrinkSelected", drinkIDasArr, mealID, null, null );// getDrinkCatID, getDrinkRegID);
+    // Log the value of our object just created
+    if (CURR_DEBUG) {
+      console.log("database.ref() = " + database.ref());
+    };
   });
+
 });

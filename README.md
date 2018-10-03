@@ -15,3 +15,7 @@ __10/01/18: Fixed bug in selection by region.__
 __10/01/18: Some Code Clean-Up in javascript file search.js.__
 
 __10/02/18: Basic Functionality before adding firebase.__
+
+__10/02/18: Added FireBase Connectivity__
+
+
