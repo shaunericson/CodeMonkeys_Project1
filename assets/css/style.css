@@ -1,3 +1,22 @@
 div {
     padding: 10px 10px;
 }
+
+#item-link, #drink-link {
+    display: block;
+    color: gold;
+    font-weight: bolder;
+}
+
+.item-image {
+    max-width: 17rem;
+    max-height: 17rem;
+    margin-bottom: 30px;
+}
+
+.drink-image {
+    max-width: 17rem;
+    max-height: 17rem;
+    margin-bottom: 30px;
+
+}
